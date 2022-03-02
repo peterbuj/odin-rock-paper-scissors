@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+
+<script>
+
+function computerPlay() {
+    var selectionValue = Math.floor(Math.random()*3) + 1;
+    console.log(selectionValue);
+    var cpu;
+    if(selectionValue == 1) {
+        cpu = "rock"
+    }
+    else if(selectionValue == 2) {
+        cpu = "paper"
+    }
+    else if(selectionValue == 3) {
+        cpu = "scissors"
+    }
+    console.log(cpu);
+    return cpu;
+}
+
+function playerPlay() {
+    var hmn = prompt()
+    hmn = hmn.toLowerCase()
+    console.log(hmn)
+    return hmn;
+}
+
+function playRound (hmn, cpu){
+    hmn = playerPlay()
+    cpu = computerPlay()
+        if(cpu == "paper" && hmn == "rock"||cpu == "scissors" && hmn == "paper"||
+            cpu == "rock" && hmn == "scissors") {
+                console.log("Player loses")
+                ++cpuWins
+        } else if(hmn == "rock" && cpu == "scissors"||hmn == "paper" && cpu == "rock"||
+            hmn == "scissors" && cpu == "paper") {
+                console.log("Player wins")
+                ++hmnWins
+        } else if(hmn == cpu) {
+                console.log("Tie!") 
+}
+}
+
+var hmnWins = 0
+var cpuWins = 0
+
+function game() {
+
+    for (i = 0; i < 5 && cpuWins < 3 || hmnWins <3 ; i++, console.log(i)) {
+        if(hmnWins == 3 || i == 5 && hmnWins > cpuWins) {
+            console.log("You won!!")
+            i = 6
+            return;
+        }
+        else if(cpuWins == 3 || i == 5 && cpuWins > hmnWins) {
+            console.log("You lost! Machines rise up!!")
+            i = 6
+            return;
+        }
+        else if(i == 5) {
+            console.log("I-impossible! They're evenly matched!!")
+            i = 6
+            return;
+        }
+        playRound()
+        }
+    cpuWins = 0
+    hmnWins = 0
+}
+
+
+
+</script>
+
+<pseudocode>
+
+    function game() {
+
+        The game starts.
+        The game plays up to five rounds.
+        The game keeps score and prints it after each round.
+        The game ends after 5 rounds OR when one player wins 3.
+
+    }
+    
+    
+
+</pseudocode>
+
+</html>
