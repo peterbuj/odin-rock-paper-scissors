@@ -1,3 +1,8 @@
+.board {
+    display: flex;
+    flex-direction: column;
+}
+
 .play {
     display: flex;
     flex-direction: row;
@@ -35,6 +40,11 @@
     font-size: 72px;
 }
 
+#Start {
+    display: flex;
+    justify-content: center;
+}
+
 .marquee {
     display: flex;
     flex-direction: row;
@@ -44,5 +54,19 @@
 
 #marquee {
     animation-duration: 2s;
-    animation-name: fadeInz;
+    animation-name: fadeIn;
+}
+
+.startfade {
+    animation-name: fadeOut;
+    animation-duration: 1s;
+}
+
+@keyframes fadeOut {
+    from {
+        opacity:1;
+    }
+    to {
+        opacity:0;
+    }
 }

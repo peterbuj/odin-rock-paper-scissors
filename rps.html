@@ -18,11 +18,9 @@
     <div class='marquee'>
         <p id='marquee'>Hello! Welcome to Rock, Paper, Scissors.</p>
     </div>
-    <div class='Start'>
+    <div id='Start'>
         <button class='playbuttons' id='start'>Start</button>
-        <button class='playbuttons' id='rock'>Rock</button>
-        <button class='playbuttons' id='paper'>Paper</button>
-        <button class='playbuttons' id='scissors'>Scissors</button>
+
     </div>
     <div class='log'>
         <button id='console'>Log values</button>
@@ -33,14 +31,38 @@
 
 <script>
 
+const Start = document.getElementById('Start')
+
+ const button1 = document.createElement('button')
+ const button2 = document.createElement('button')
+ const button3 = document.createElement('button')
+
+ button1.textContent = 'Rock'
+ button2.textContent = 'Paper'
+ button3.textContent = 'Scissors'
+
+ button1.classList.add('playbuttons')
+ button2.classList.add('playbuttons')
+ button3.classList.add('playbuttons')
+
+ button1.setAttribute('id', 'rock')
+ button2.setAttribute('id', 'paper')
+ button3.setAttribute('id', 'scissors')
 
 const startbutton = document.getElementById('start')
-startbutton.addEventListener('click', function (e) {    
+startbutton.addEventListener('click', function (e) { 
+    startbutton.classList.add('startfade')
+    startbutton.addEventListener('animationend', function (e) {
+        startbutton.remove()
+        Start.appendChild(button1)
+        Start.appendChild(button2)
+        Start.appendChild(button3)
+    })
+
 })
 
-const button1 = document.getElementById('rock')
-const button2 = document.getElementById('paper')
-const button3 = document.getElementById('scissors')
+
+
 var hmn = ''
 var hmnWins = 0
 var cpuWins = 0
