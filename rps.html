@@ -11,9 +11,15 @@
 
 <div class='board'>
     <div class='score'>
+        <div class='left-score'>
         <p id='your-score'></p>
+        <p id='score-text-left'>You</p>
+    </div>
         <p id='divider'></p>
+        <div class='right-score'>
         <p id ='comp-score'></p>
+        <p id='score-text-right'>Computer</p>
+    </div>
     </div>
     <div class='marquee'>
         <p id='marquee'>Hello! Welcome to Rock, Paper, Scissors.</p>
@@ -45,22 +51,34 @@ const Start = document.getElementById('Start')
  button2.classList.add('playbuttons')
  button3.classList.add('playbuttons')
 
+ const playbuttons = document.querySelectorAll('playbuttons')
+
  button1.setAttribute('id', 'rock')
  button2.setAttribute('id', 'paper')
  button3.setAttribute('id', 'scissors')
 
 const startbutton = document.getElementById('start')
 startbutton.addEventListener('click', function (e) { 
-    startbutton.classList.add('startfade')
+    startbutton.classList.add('fadeOut')
     startbutton.addEventListener('animationend', function (e) {
         startbutton.remove()
         Start.appendChild(button1)
         Start.appendChild(button2)
         Start.appendChild(button3)
+        button1.classList.add('fadeIn')
+        button2.classList.add('fadeIn')
+        button3.classList.add('fadeIn')
     })
 
 })
 
+function playRound() {
+    if(hmnWins==5||cpuWins==5) {
+        button1.classList.add('fadeOut')
+        button2.classList.add('fadeOut')
+        button3.classList.add('fadeOut')
+}
+}
 
 
 var hmn = ''
@@ -72,6 +90,7 @@ const yourscore = document.getElementById('your-score')
 const compscore = document.getElementById('comp-score')
     compscore.innerText = cpuWins
 
+const marquee = document.getElementById('marquee')
 
 button1.addEventListener('click', function (e) {
     console.log('Clicked')
@@ -79,17 +98,21 @@ button1.addEventListener('click', function (e) {
     cpu = computerPlay()
     if(cpu == "scissors") {
         console.log("You won the round!")
+        marquee.innerText = "You won the round! Rock smashes Scissors!"
         ++hmnWins
         yourscore.innerText = hmnWins
     }
     else if(cpu == "paper") {
         console.log("You lost the round!")
+        marquee.innerText = "Oh no! The computer chose Paper!"
         ++cpuWins
         compscore.innerText = cpuWins
     }
     else if(cpu == "rock") {
         console.log("Tie!")
+        marquee.innerText = "A tie!!"
     }
+    playRound()
 })
 
 button2.addEventListener('click', function (e) {
@@ -98,17 +121,21 @@ button2.addEventListener('click', function (e) {
     cpu = computerPlay()
     if(cpu == "rock") {
         console.log("You won the round!")
+        marquee.innerText = "You won the round! Paper covers Rock!"
         ++hmnWins
         yourscore.innerText = hmnWins
     }
     else if(cpu == "scissors") {
         console.log("You lost the round!")
+        marquee.innerText = "Oh no! The computer chose Scissors!"
         ++cpuWins
         compscore.innerText = cpuWins
     }
     else if(cpu == "paper") {
         console.log("Tie!")
+        marquee.innerText = "A tie!!"
     }
+    playRound()
 })
 
 
@@ -119,17 +146,21 @@ button3.addEventListener('click', function (e) {
     cpu = computerPlay()
     if(cpu == "paper") {
         console.log("You won the round!")
+        marquee.innerText = "You won the round! Scissors cut Paper!"
         ++hmnWins
         yourscore.innerText = hmnWins
     }
     else if(cpu == "rock") {
         console.log("You lost the round!")
+        marquee.innerText = "Oh no! The computer chose Rock!"
         ++cpuWins
         compscore.innerText = cpuWins
     }
     else if(cpu == "scissors") {
         console.log("Tie!")
+        marquee.innerText = "A tie!!"
     }
+    playRound()
 })
 
 function computerPlay() {
@@ -153,34 +184,10 @@ function computerPlay() {
 const button4 = document.getElementById('console')
 
 button4.addEventListener('click', function (e) {
-    console.log(hmn)
+    console.log(hmnWins)
 })
 
 
-function playerPlay() {
-    var hmn = prompt()
-    hmn = hmn.toLowerCase()
-    console.log(hmn)
-    return hmn;
-}
-
-function playRound (hmn, cpu){
-    hmn = playerPlay()
-    cpu = computerPlay()
-        if(cpu == "paper" && hmn == "rock"||cpu == "scissors" && hmn == "paper"||
-            cpu == "rock" && hmn == "scissors") {
-                console.log("Player loses")
-                ++cpuWins
-        } else if(hmn == "rock" && cpu == "scissors"||hmn == "paper" && cpu == "rock"||
-            hmn == "scissors" && cpu == "paper") {
-                console.log("Player wins")
-                ++hmnWins
-        } else if(hmn == cpu) {
-                console.log("Tie!") 
-}}
-
-var hmnWins = 0
-var cpuWins = 0
 
 
 

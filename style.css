@@ -20,6 +20,16 @@
     padding: 8px
 }
 
+#rock {
+    padding-left: 19px;
+    padding-right: 19px;
+}
+
+#paper {
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
 .score {
     display: flex;
     flex-direction: row;
@@ -29,6 +39,18 @@
 
 #your-score {
     font-size: 72px;
+    margin-bottom: 0px;
+}
+
+.left-score {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.right-score {
+    display: flex;
+    flex-direction: column;
 }
 
 #divider {
@@ -38,7 +60,11 @@
 
 #comp-score {
     font-size: 72px;
+    padding-left: 16px;
+    margin-bottom: 0px;
 }
+
+
 
 #Start {
     display: flex;
@@ -49,15 +75,16 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
+    margin-top: 48px;
     padding-bottom: 24px;
 }
 
-#marquee {
-    animation-duration: 2s;
+.fadeIn {
     animation-name: fadeIn;
+    animation-duration: 1s;
 }
 
-.startfade {
+.fadeOut {
     animation-name: fadeOut;
     animation-duration: 1s;
 }
@@ -68,5 +95,14 @@
     }
     to {
         opacity:0;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
     }
 }
