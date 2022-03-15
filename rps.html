@@ -42,14 +42,17 @@ const Start = document.getElementById('Start')
  const button1 = document.createElement('button')
  const button2 = document.createElement('button')
  const button3 = document.createElement('button')
+ const playagain = document.createElement('button')
 
  button1.textContent = 'Rock'
  button2.textContent = 'Paper'
  button3.textContent = 'Scissors'
+ playagain.textContent = 'Play Again?'
 
  button1.classList.add('playbuttons')
  button2.classList.add('playbuttons')
  button3.classList.add('playbuttons')
+ playagain.classList.add('playbuttons')
 
  const playbuttons = document.querySelectorAll('playbuttons')
 
@@ -61,14 +64,19 @@ const startbutton = document.getElementById('start')
 startbutton.addEventListener('click', function (e) { 
     startbutton.classList.add('fadeOut')
     startbutton.addEventListener('animationend', function (e) {
+        startbutton.classList.remove('fadeOut')
         startbutton.remove()
-        Start.appendChild(button1)
-        Start.appendChild(button2)
-        Start.appendChild(button3)
+            Start.appendChild(button1)
+            Start.appendChild(button2)
+            Start.appendChild(button3)
         button1.classList.add('fadeIn')
         button2.classList.add('fadeIn')
         button3.classList.add('fadeIn')
     })
+    button1.classList.remove('fadeIn')
+    button2.classList.remove('fadeIn')
+    button3.classList.remove('fadeIn')
+    startbutton.removeEventListener('animationend')
 
 })
 
@@ -77,6 +85,19 @@ function playRound() {
         button1.classList.add('fadeOut')
         button2.classList.add('fadeOut')
         button3.classList.add('fadeOut')
+        button3.addEventListener('animationend', function (e) {
+            button1.remove()
+            button2.remove()
+            button3.remove()
+        button1.classList.remove('fadeOut')
+        button2.classList.remove('fadeOut')
+        button3.classList.remove('fadeOut')
+            Start.appendChild(playagain)
+            playagain.classList.add('fadeIn')
+        })
+        button3.removeEventListener('animationend')
+        playagain.classList.remove('fadeIn')
+
 }
 }
 
@@ -91,6 +112,21 @@ const compscore = document.getElementById('comp-score')
     compscore.innerText = cpuWins
 
 const marquee = document.getElementById('marquee')
+
+playagain.addEventListener('click', function (e) {
+    hmnWins = 0
+    yourscore.innerText = hmnWins
+    cpuWins = 0
+    compscore.innerText = hmnWins
+    playagain.classList.add('fadeOut')
+    playagain.addEventListener('animationend', function (e) {
+        playagain.remove()
+        playagain.classList.remove('fadeOut')
+        Start.appendChild(startbutton)
+        Start.classList.add('fadeIn')
+    })
+    playagain.removeEventListener('animationend', e)
+})
 
 button1.addEventListener('click', function (e) {
     console.log('Clicked')
