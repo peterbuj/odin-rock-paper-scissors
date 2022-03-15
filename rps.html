@@ -61,10 +61,12 @@ const Start = document.getElementById('Start')
  button3.setAttribute('id', 'scissors')
 
 const startbutton = document.getElementById('start')
+startbutton.classList.add('fadeIn')
 startbutton.addEventListener('click', function (e) { 
     startbutton.classList.add('fadeOut')
     startbutton.addEventListener('animationend', function (e) {
         startbutton.classList.remove('fadeOut')
+        startbutton.classList.remove('fadeIn')
         startbutton.remove()
             Start.appendChild(button1)
             Start.appendChild(button2)
@@ -72,12 +74,10 @@ startbutton.addEventListener('click', function (e) {
         button1.classList.add('fadeIn')
         button2.classList.add('fadeIn')
         button3.classList.add('fadeIn')
-    })
+    }, {once : true})
     button1.classList.remove('fadeIn')
     button2.classList.remove('fadeIn')
     button3.classList.remove('fadeIn')
-    startbutton.removeEventListener('animationend')
-
 })
 
 function playRound() {
@@ -94,12 +94,11 @@ function playRound() {
         button3.classList.remove('fadeOut')
             Start.appendChild(playagain)
             playagain.classList.add('fadeIn')
-        })
-        button3.removeEventListener('animationend')
+            hmnWins = 0
+            cpuWins = 0
+        }, {once : true})
         playagain.classList.remove('fadeIn')
-
-}
-}
+}}
 
 
 var hmn = ''
@@ -114,9 +113,7 @@ const compscore = document.getElementById('comp-score')
 const marquee = document.getElementById('marquee')
 
 playagain.addEventListener('click', function (e) {
-    hmnWins = 0
     yourscore.innerText = hmnWins
-    cpuWins = 0
     compscore.innerText = hmnWins
     playagain.classList.add('fadeOut')
     playagain.addEventListener('animationend', function (e) {
@@ -124,8 +121,7 @@ playagain.addEventListener('click', function (e) {
         playagain.classList.remove('fadeOut')
         Start.appendChild(startbutton)
         Start.classList.add('fadeIn')
-    })
-    playagain.removeEventListener('animationend', e)
+    }, {once : true})
 })
 
 button1.addEventListener('click', function (e) {
