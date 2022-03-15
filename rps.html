@@ -86,6 +86,11 @@ function playRound() {
         button2.classList.add('fadeOut')
         button3.classList.add('fadeOut')
         button3.addEventListener('animationend', function (e) {
+            if(hmnWins==5) {
+            marquee.innerText = "You reached 5 points first, and won the game!"
+        } else if(cpuWins==5) {
+            marquee.innerText = "The computer reached 5 points first, and claimed victory!"
+        }
             button1.remove()
             button2.remove()
             button3.remove()
